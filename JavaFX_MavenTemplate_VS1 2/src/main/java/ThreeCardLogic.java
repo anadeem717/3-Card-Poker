@@ -1,7 +1,9 @@
-
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ThreeCardLogic {
 
+    // Method that evaluates the given hand's value
     public static int evalHand(ArrayList<Card> hand) {
         // Check straight flush (1)
         if (isStraight(hand) && isFlush(hand)) return 1;
@@ -38,11 +40,85 @@ public class ThreeCardLogic {
     // Method to compare the dealer and player hands
     // returns 0 if tie, 1 if dealer wins, 2 if player wins
     public static int compareHands(ArrayList<Card> dealer, ArrayList<Card> player) {
-        int dealerVal = evalHand(delear);
+        int dealerVal = evalHand(dealer);
         int playerVal = evalHand(player);
 
         if (dealerVal == playerVal) return 0; // tie
-        if (dealerVal > playerVal) return 1;  // dealer wins
-        if (dealerVal < playerVal) return 2;  // player wins
+        else if (dealerVal > playerVal) return 1;  // dealer wins
+        else return 2;  // player wins
     }
+
+    // Method that checks to see if the hand is a 'Straight'
+    public static boolean isStraight(ArrayList<Card> hand) {
+        // Create a array of card values
+        ArrayList<Integer> values = new ArrayList<>();
+        for (Card card : hand) {
+            values.add(card.value); // get the value of each card
+        }
+
+        // sort the card values
+        Collections.sort(values);
+
+        // check if card values are consecutive
+        for (int i = 0; i < values.size() - 1; i++) {
+            if (values.get(i) != values.get(i + 1) - 1) {
+                return false; // not a straight
+            }
+        }
+
+        return true; // straight
+    }
+
+
+    // Method that checks to see if the hand is a 'Flush'
+    public static boolean isFlush(ArrayList<Card> hand) {
+        char suit = hand.get(0).suit; // card suit to compare to
+
+        // check if all cards have the same suit
+        for (Card card : hand) {
+            if (card.suit != suit) {
+                return false; // not a flush
+            }
+        }
+
+        return true; // flush
+    }
+
+
+    // Method that checks to see if the hand is a 'Pair'
+    public static boolean isPair(ArrayList<Card> hand) {
+        // create an array of card values
+        ArrayList<Integer> values = new ArrayList<>();
+        for (Card card : hand) {
+            values.add(card.value); // get the value of each card
+        }
+
+        // iterate through values and check for a pair
+        for (int i = 0; i < values.size(); i++) {
+            for (int j = i + 1; j < values.size(); j++) {
+                if (values.get(i).equals(values.get(j))) {
+                    return true; // pair found
+                }
+            }
+        }
+
+        return false; // no pair found
+    }
+
+
+    // Method that checks to see if the hand is 'Three of a Kind'
+    public static boolean isThreeOfAKind(ArrayList<Card> hand) {
+        int value = hand.get(0).value; // card value to compare to
+
+        // check if all cards have the same value
+        for (Card card : hand) {
+            if (card.value != value) {
+                return false; // not a three of a kind
+            }
+        }
+
+        return true; // three of a kind
+    }
+
+
 }
