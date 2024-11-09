@@ -3,6 +3,22 @@
 public class ThreeCardLogic {
 
     public static int evalHand(ArrayList<Card> hand) {
+        // Check straight flush (1)
+        if (isStraight(hand) && isFlush(hand)) return 1;
+
+        // Check three of a kind (2)
+        if (isThreeOfAKind(hand)) return 2;
+
+        // Check straight (3)
+        if (isStraight(hand)) return 3;
+
+        // Check flush (4)
+        if (isFlush(hand)) return 4;
+
+        // Check pair (5)
+        if (isPair(hand)) return 5;
+
+        // High card (0)
         return 0;
     }
 
