@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Button;
 
 public class WelcomePageController implements Initializable {
 
