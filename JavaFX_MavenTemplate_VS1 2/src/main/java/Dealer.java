@@ -15,7 +15,7 @@ public class Dealer {
     // Method to deal a hand of three cards
     public ArrayList<Card> dealHand() {
         // Check if deck needs to be reshuffled (less than 34 cards remaining)
-        if (theDeck.getRemainingCards() < 34) {
+        if (theDeck.getRemainingCards() < 35) {
             theDeck.newDeck();
         }
 

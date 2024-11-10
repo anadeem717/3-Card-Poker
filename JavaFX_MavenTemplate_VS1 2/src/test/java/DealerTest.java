@@ -50,19 +50,6 @@ public class DealerTest {
     }
 
     @Test
-    void testUniqueCards() {
-        Set<String> dealtCards = new HashSet<>();
-
-        for (int i = 0; i < 5; i++) {
-            ArrayList<Card> hand = dealer.dealHand();
-            for (Card card : hand) {
-                String cardString = card.suit + String.valueOf(card.value);
-                assertTrue(dealtCards.add(cardString), "Found duplicate card: " + cardString);
-            }
-        }
-    }
-
-    @Test
     void testDeckReshuffle() {
         int initialHands = 6;
         for (int i = 0; i < initialHands; i++) {

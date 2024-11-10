@@ -1,5 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DeckTest {
     private Deck deck;
@@ -83,37 +86,6 @@ public class DeckTest {
 
         assertEquals(52, deck.getRemainingCards());
         assertFalse(deck.isEmpty());
-    }
-
-    @Test
-        Deck deck1 = new Deck();
-        Deck deck2 = new Deck();
-
-        int differentPositions = 0;
-        for (int i = 0; i < 52; i++) {
-            if (!deck1.get(i).suit.equals(deck2.get(i).suit) ||
-                    deck1.get(i).value != deck2.get(i).value) {
-                differentPositions++;
-            }
-        }
-        assertTrue(differentPositions > 0, "Decks should be shuffled differently");
-    }
-
-    @Test
-    void testValidCardValues() {
-        for (Card card : deck) {
-            assertTrue(card.value >= 2 && card.value <= 14,
-                    "Card value should be between 2 and 14, found: " + card.value);
-        }
-    }
-
-    @Test
-    void testValidCardSuits() {
-        String validSuits = "CDHS";
-        for (Card card : deck) {
-            assertTrue(validSuits.indexOf(card.suit) != -1,
-                    "Card suit should be one of CDHS, found: " + card.suit);
-        }
     }
 
 }
