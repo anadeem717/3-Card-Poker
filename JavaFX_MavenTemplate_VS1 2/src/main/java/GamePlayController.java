@@ -8,12 +8,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
 
 
 public class GamePlayController implements Initializable {
+
 
     @FXML
     private Pane GamePlayRoot;
@@ -22,40 +25,56 @@ public class GamePlayController implements Initializable {
     Player playerTwo;
     Dealer theDealer;
 
-    @FXML
-    private ImageView dealerCard1;
-    @FXML
-    private ImageView dealerCard2;
-    @FXML
-    private ImageView dealerCard3;
+    @FXML private ImageView dealerCard1;
+    @FXML private ImageView dealerCard2;
+    @FXML private ImageView dealerCard3;
 
-    @FXML
-    private ImageView playerOneCard1;
-    @FXML
-    private ImageView playerOneCard2;
-    @FXML
-    private ImageView playerOneCard3;
+    @FXML private ImageView playerOneCard1;
+    @FXML private ImageView playerOneCard2;
+    @FXML private ImageView playerOneCard3;
 
-    @FXML
-    private ImageView playerTwoCard1;
-    @FXML
-    private ImageView playerTwoCard2;
-    @FXML
-    private ImageView playerTwoCard3;
+    @FXML private ImageView playerTwoCard1;
+    @FXML private ImageView playerTwoCard2;
+    @FXML private ImageView playerTwoCard3;
 
-    @FXML
-    private Button p1AnteBetButton;
-    @FXML
-    private Button p2AnteBetButton;
-    @FXML
-    private Button p1PPButton;
-    @FXML
-    private Button p2PPButton;
+    @FXML private Button dealCardsButton;
+
+    private boolean cardsDealt = false;
+
+    @FXML public Button p1AnteBetButton;
+    @FXML public Button p1PPButton;
+    @FXML public Button p2AnteBetButton;
+    @FXML public Button p2PPButton;
 
     @FXML public TextField p1AnteBetAmount;
     @FXML public TextField p2AnteBetAmount;
     @FXML public TextField p1PPBetAmount;
     @FXML public TextField p2PPBetAmount;
+    @FXML public Text P1anteBetText;
+    @FXML public Text P1PPBetText;
+    @FXML public Text P1PlayBetText;
+    @FXML public Text P2anteBetText;
+    @FXML public Text P2PPBetText;
+    @FXML public Text P2PlayBetText;
+
+    @FXML public Text p1Winnings;
+    @FXML public Text p2Winnings;
+
+    private boolean p1AnteBetPlaced = false;
+    private boolean p2AnteBetPlaced = false;
+
+    @FXML Button p1Play;
+    @FXML Button p1Fold;
+    @FXML Button p2Play;
+    @FXML Button p2Fold;
+
+    @FXML VBox p1BetsVBox;
+    @FXML VBox p2BetsVBox;
+
+    private boolean p1Selected = false;
+    private boolean p2Selected = false;
+
+    @FXML Button revealButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,31 +82,51 @@ public class GamePlayController implements Initializable {
         playerOne = new Player();
         playerTwo = new Player();
 
+        // Initial card setup
         theDealer.dealDealerHand();
         playerOne.setHand(theDealer.dealHand());
         playerTwo.setHand(theDealer.dealHand());
-
         findCardImages(theDealer.getDealerHand(), playerOne.getHand(), playerTwo.getHand());
 
-        // Deal hands to players and dealer
-        theDealer.dealDealerHand();
-        playerOne.setHand(theDealer.dealHand());
-        playerTwo.setHand(theDealer.dealHand());
+        // Disable Deal Cards button and betting buttons initially
+        dealCardsButton.setDisable(true);
+        p1AnteBetButton.setDisable(false);
+        p2AnteBetButton.setDisable(false);
+        p1PPButton.setDisable(false);
+        p2PPButton.setDisable(false);
     }
+
 
     private void findCardImages(ArrayList<Card> dealerHand, ArrayList<Card> playerOneHand, ArrayList<Card> playerTwoHand) {
-        dealerCard1.setImage(new Image("/CardImages/back.png"));
-        dealerCard2.setImage(new Image("/CardImages/back.png"));
-        dealerCard3.setImage(new Image("/CardImages/back.png"));
 
-        playerOneCard1.setImage(new Image(getCardImagePath(playerOneHand.get(0))));
-        playerOneCard2.setImage(new Image(getCardImagePath(playerOneHand.get(1))));
-        playerOneCard3.setImage(new Image(getCardImagePath(playerOneHand.get(2))));
 
-        playerTwoCard1.setImage(new Image(getCardImagePath(playerTwoHand.get(0))));
-        playerTwoCard2.setImage(new Image(getCardImagePath(playerTwoHand.get(1))));
-        playerTwoCard3.setImage(new Image(getCardImagePath(playerTwoHand.get(2))));
+        if (cardsDealt) {
+
+            // Show Player 1's and Player 2's cards after dealing
+            playerOneCard1.setImage(new Image(getCardImagePath(playerOneHand.get(0))));
+            playerOneCard2.setImage(new Image(getCardImagePath(playerOneHand.get(1))));
+            playerOneCard3.setImage(new Image(getCardImagePath(playerOneHand.get(2))));
+
+            playerTwoCard1.setImage(new Image(getCardImagePath(playerTwoHand.get(0))));
+            playerTwoCard2.setImage(new Image(getCardImagePath(playerTwoHand.get(1))));
+            playerTwoCard3.setImage(new Image(getCardImagePath(playerTwoHand.get(2))));
+
+        } else {
+            // Initially show only back of cards
+            dealerCard1.setImage(new Image("/CardImages/back.png"));
+            dealerCard2.setImage(new Image("/CardImages/back.png"));
+            dealerCard3.setImage(new Image("/CardImages/back.png"));
+
+            playerOneCard1.setImage(new Image("/CardImages/back.png"));
+            playerOneCard2.setImage(new Image("/CardImages/back.png"));
+            playerOneCard3.setImage(new Image("/CardImages/back.png"));
+
+            playerTwoCard1.setImage(new Image("/CardImages/back.png"));
+            playerTwoCard2.setImage(new Image("/CardImages/back.png"));
+            playerTwoCard3.setImage(new Image("/CardImages/back.png"));
+        }
     }
+
 
     private String getCardImagePath(Card card) {
         String valueString = getCardValueString(card.value);
@@ -107,6 +146,7 @@ public class GamePlayController implements Initializable {
         return "/CardImages/" + valueString + "_of_" + suitString + ".png";
     }
 
+
     private String getCardValueString(int value) {
         if (value == 11) return "jack";
         else if (value == 12) return "queen";
@@ -119,29 +159,202 @@ public class GamePlayController implements Initializable {
     @FXML
     private void handleP1AnteBet(ActionEvent event) {
         int anteBet = Integer.parseInt(p1AnteBetAmount.getText());
-        playerOne.placeBet(anteBet, "ante");
+        if (!playerOne.placeBet(anteBet, "ante")) {
+            showWarning("Ante Bet must be between $5 and $25.");
+            return;
+        }
+
+        P1anteBetText.setText("Ante Bet: $" + Integer.toString(playerOne.getAnteBet()));
+        p1AnteBetButton.setDisable(true);
+        p1AnteBetPlaced = true;
+        p1AnteBetAmount.clear();
+
+        checkAnteBets();
     }
 
     // Event handler for Player 2's Ante Bet button click
     @FXML
     private void handleP2AnteBet(ActionEvent event) {
         int anteBet = Integer.parseInt(p2AnteBetAmount.getText());
-        playerTwo.placeBet(anteBet, "ante");
+
+        if (!playerTwo.placeBet(anteBet, "ante")) {
+            showWarning("Ante Bet must be between $5 and $25.");
+            return;
+        }
+
+        P2anteBetText.setText("Ante Bet: $" + Integer.toString(playerTwo.getAnteBet()));
+        p2AnteBetButton.setDisable(true);
+        p2AnteBetPlaced = true;
+        p2AnteBetAmount.clear();
+
+        checkAnteBets();
+    }
+
+    private void checkAnteBets() {
+        // Enable the Deal Cards button only if both Ante bets are placed
+        if (p1AnteBetPlaced && p2AnteBetPlaced) {
+            dealCardsButton.setDisable(false);
+        }
     }
 
     // Event handler for Player 1's Pair Plus Bet button click
     @FXML
     private void handleP1PPBet(ActionEvent event) {
         int ppBet = Integer.parseInt(p1PPBetAmount.getText());
-        playerOne.placeBet(ppBet, "pp");
+
+        if (!playerOne.placeBet(ppBet, "pp")) {
+            showWarning("Pair Plus Bet must be between $5 and $25.");
+            return;
+        }
+
+        P1PPBetText.setText("PairPlus Bet: $" + Integer.toString(playerOne.getPairPlusBet()));
+        p1PPButton.setDisable(true);
+        p1PPBetAmount.clear();
     }
 
     // Event handler for Player 2's Pair Plus Bet button click
     @FXML
     private void handleP2PPBet(ActionEvent event) {
         int ppBet = Integer.parseInt(p2PPBetAmount.getText());
-        playerTwo.placeBet(ppBet, "pp");
+
+        if (!playerTwo.placeBet(ppBet, "pp")) {
+            showWarning("Pair Plus Bet must be between $5 and $25.");
+            return;
+        }
+
+        P2PPBetText.setText("PairPlus Bet: $" + Integer.toString(playerTwo.getPairPlusBet()));
+        p2PPButton.setDisable(true);
+        p2PPBetAmount.clear();
     }
+
+    // Helper method to show a warning alert
+    private void showWarning(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Invalid Bet");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void handleDealCards(ActionEvent event) {
+
+        // Proceed with dealing cards
+        cardsDealt = true;
+        findCardImages(theDealer.getDealerHand(), playerOne.getHand(), playerTwo.getHand());
+
+        // Disable the Deal Cards button to prevent re-dealing
+        dealCardsButton.setDisable(true);
+        dealCardsButton.setVisible(false);
+
+        // disable pp bets
+        p1PPButton.setDisable(true);
+        p2PPButton.setDisable(true);
+
+        p1BetsVBox.setVisible(false);
+        p2BetsVBox.setVisible(false);
+
+        // enable the play/fold buttons
+        p1Play.setVisible(true);
+        p1Play.setDisable(false);
+        p2Play.setVisible(true);
+        p2Play.setDisable(false);
+        p1Fold.setVisible(true);
+        p1Fold.setDisable(false);
+        p2Fold.setVisible(true);
+        p2Fold.setDisable(false);
+
+    }
+
+    @FXML private void handleP1Play(ActionEvent event) {
+        playerOne.setPlayBet(playerOne.getAnteBet());
+        P1PlayBetText.setText("Play Wager: $" + Integer.toString(playerOne.getPlayBet()));
+        p1Play.setDisable(true);
+        p1Fold.setDisable(true);
+
+        // evaluate PairPlus wins
+        int res = ThreeCardLogic.evalPPWinnings(playerOne.getHand(), playerOne.getPairPlusBet());
+        playerOne.updateWinnings(res);
+        p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
+
+        p1Selected = true;
+
+        checkSelections();
+
+    }
+
+    @FXML private void handleP2Play(ActionEvent event) {
+        playerTwo.setPlayBet(playerTwo.getAnteBet());
+        P2PlayBetText.setText("Ante Wager: $" + Integer.toString(playerTwo.getPlayBet()));
+        p2Play.setDisable(true);
+        p2Fold.setDisable(true);
+
+        // evaluate PairPlus wins
+        int res = ThreeCardLogic.evalPPWinnings(playerTwo.getHand(), playerTwo.getPairPlusBet());
+        playerTwo.updateWinnings(res);
+        p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
+
+        p2Selected = true;
+
+        checkSelections();
+    }
+
+    @FXML private void handleP1Fold(ActionEvent event) {
+        playerOne.updateWinnings(-(playerOne.getAnteBet() + playerOne.getPairPlusBet()));
+        playerOne.setAnteBet(0);
+        P1anteBetText.setText("Ante Bet: $" + Integer.toString(playerOne.getAnteBet()));
+        p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
+
+        p1Play.setDisable(true);
+        p1Fold.setDisable(true);
+
+        p1Selected = true;
+
+        checkSelections();
+
+    }
+
+    @FXML private void handleP2Fold(ActionEvent event) {
+        playerTwo.updateWinnings(-(playerTwo.getAnteBet() + playerTwo.getPairPlusBet()));
+        playerTwo.setAnteBet(0);
+        P2anteBetText.setText("Ante Bet: $" + Integer.toString(playerTwo.getAnteBet()));
+        p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
+
+        p2Play.setDisable(true);
+        p2Fold.setDisable(true);
+
+        p2Selected = true;
+
+        checkSelections();
+    }
+
+    private void checkSelections() {
+        if (p1Selected && p2Selected) {
+            revealButton.setVisible(true);
+            revealButton.setDisable(false);
+
+            p1Selected = false;
+            p2Selected = false;
+        }
+    }
+
+    @FXML void handleRevealDealer(ActionEvent event) {
+
+        revealButton.setVisible(false);
+        revealButton.setDisable(true);
+
+        dealerCard1.setImage(new Image(getCardImagePath(theDealer.getDealerHand().get(0))));
+        dealerCard2.setImage(new Image(getCardImagePath(theDealer.getDealerHand().get(1))));
+        dealerCard3.setImage(new Image(getCardImagePath(theDealer.getDealerHand().get(2))));
+
+        evaluateWin();
+    }
+
+
+    private void evaluateWin() {
+
+    }
+
 
     // Handle "Exit" menu item action
     @FXML
@@ -186,7 +399,7 @@ public class GamePlayController implements Initializable {
     private void handleNewLook() {
         // Clear any existing stylesheets
         GamePlayRoot.getStylesheets().clear();
-        GamePlayRoot.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        GamePlayRoot.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
     }
 
     // Reset player winnings without modifying the Player class

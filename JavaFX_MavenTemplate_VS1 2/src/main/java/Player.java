@@ -76,8 +76,11 @@ public class Player {
     }
 
     public int getAnteBet() { return anteBet; }
+    public void setAnteBet(int anteBet) { this.anteBet = anteBet; }
 
     public int getPairPlusBet() { return pairPlusBet; }
 
     public int getPlayBet() { return playBet; }
+
+    public void setPlayBet(int playBet) { this.playBet = playBet; }
 }
