@@ -20,7 +20,7 @@ public class Dealer {
         }
 
         // Create new ArrayList for the hand
-        ArrayList<Card> hand = new ArrayList<Card>();
+        ArrayList<Card> hand = new ArrayList<>();
 
         // Deal 3 cards
         for (int i = 0; i < 3; i++) {
@@ -35,10 +35,7 @@ public class Dealer {
         // Clear any existing cards in hand
         dealersHand.clear();
 
-        // Deal 3 new cards to dealer
-        for (int i = 0; i < 3; i++) {
-            dealersHand.add(theDeck.drawCard());
-        }
+        dealersHand = dealHand();
     }
 
     // Getter for dealer's hand
