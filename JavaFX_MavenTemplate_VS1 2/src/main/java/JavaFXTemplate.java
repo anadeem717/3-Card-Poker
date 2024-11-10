@@ -11,12 +11,10 @@ import javafx.scene.Parent;
 
 public class JavaFXTemplate extends Application {
 
-	Player playerOne;
-	Player playerTwo;
-	Dealer theDealer;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+
 		Parent root = FXMLLoader.load(getClass().getResource("/FXML/WelcomePage.fxml"));
 		Scene scene = new Scene(root, 1000, 700);
 		primaryStage.setTitle("3 Card Poker");
