@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.ButtonType;
+
 
 public class GamePlayController implements Initializable {
 
@@ -63,6 +68,11 @@ public class GamePlayController implements Initializable {
         playerTwo.setHand(theDealer.dealHand());
 
         findCardImages(theDealer.getDealerHand(), playerOne.getHand(), playerTwo.getHand());
+
+        // Deal hands to players and dealer
+        theDealer.dealDealerHand();
+        playerOne.setHand(theDealer.dealHand());
+        playerTwo.setHand(theDealer.dealHand());
     }
 
     private void findCardImages(ArrayList<Card> dealerHand, ArrayList<Card> playerOneHand, ArrayList<Card> playerTwoHand) {
@@ -132,5 +142,55 @@ public class GamePlayController implements Initializable {
         int ppBet = Integer.parseInt(p2PPBetAmount.getText());
         playerTwo.placeBet(ppBet, "pp");
     }
+
+    // Handle "Exit" menu item action
+    @FXML
+    private void handleExit() {
+        // Create a confirmation alert for exiting
+        Alert exitConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        exitConfirmation.setTitle("Exit");
+        exitConfirmation.setHeaderText(null);
+        exitConfirmation.setContentText("Are you sure you want to quit?");
+
+        // Create custom buttons for the alert
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType noButton = new ButtonType("No");
+
+        // Set the buttons in the alert
+        exitConfirmation.getButtonTypes().setAll(yesButton, noButton);
+
+        // Show the alert and wait for the user's response
+        exitConfirmation.showAndWait().ifPresent(response -> {
+            if (response == yesButton) {
+                // If 'Yes' is clicked, exit the application
+                System.exit(0);
+            } else {
+                // If 'No' is clicked, do nothing and close the alert
+                exitConfirmation.close();
+            }
+        });
+    }
+
+    @FXML
+    private void handleFreshStart() {
+        resetPlayerWinnings();
+        theDealer.dealDealerHand();
+        playerOne.setHand(theDealer.dealHand());
+        playerTwo.setHand(theDealer.dealHand());
+    }
+
+    // Handle "NewLook" menu item action
+    @FXML
+    private void handleNewLook() {
+        GamePlayRoot.getStylesheets().clear();
+        GamePlayRoot.getStylesheets().add("");
+    }
+
+    // Reset player winnings without modifying the Player class
+    private void resetPlayerWinnings() {
+        playerOne.updateWinnings(-playerOne.getTotalWinnings());
+        playerTwo.updateWinnings(-playerTwo.getTotalWinnings());
+    }
+
 
 }
