@@ -18,13 +18,14 @@
     </VBox>
 
     <!-- Player 1's Cards at the bottom left -->
-    <VBox alignment="TOP_CENTER" layoutX="77.0" layoutY="422.0" prefHeight="230.0" prefWidth="320.0" spacing="20">
+    <VBox alignment="TOP_CENTER" layoutX="77.0" layoutY="422.0" prefHeight="267.0" prefWidth="332.0" spacing="20">
         <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Player 1's Cards" />
         <HBox spacing="10">
             <ImageView fx:id="playerOneCard1" fitHeight="150" fitWidth="100" />
             <ImageView fx:id="playerOneCard2" fitHeight="150" fitWidth="100" />
             <ImageView fx:id="playerOneCard3" fitHeight="150" fitWidth="100" />
         </HBox>
+      <HBox prefHeight="38.0" prefWidth="320.0" />
     </VBox>
 
     <!-- Player 2's Cards at the bottom right -->
@@ -39,22 +40,19 @@
 
     <!-- Player 1's Bet Buttons -->
     <Button fx:id="p1AnteBetButton" layoutX="59.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleP1AnteBet" text="Place Ante Wager" />
-    <Button fx:id="p1PPButton" layoutX="48.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleP1PPBet" text="Place Pair-Plus Wager" />
+    <Button fx:id="p1PPButton" layoutX="48.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleP1PPBet" text="Place Pair-Plus Wager" />
 
     <!-- Player 2's Bet Buttons -->
     <Button fx:id="p2AnteBetButton" layoutX="831.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleP2AnteBet" text="Place Ante Wager" />
-    <Button fx:id="p2PPButton" layoutX="820.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleP2PPBet" text="Place Pair-Plus Wager" />
+    <Button fx:id="p2PPButton" layoutX="820.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleP2PPBet" text="Place Pair-Plus Wager" />
 
     <!-- Player 1's Bet Amount TextField (Initially hidden) -->
-    <TextField fx:id="p1BetAmountTextField" layoutX="59.0" layoutY="305.0" prefWidth="200.0" promptText="Enter Player 1 Bet Amount" visible="false" />
+    <TextField fx:id="p1AnteBetAmount" layoutX="17.0" layoutY="247.0" prefHeight="25.0" prefWidth="193.0" promptText="Enter Player 1 Ante-Bet Amount" />
 
     <!-- Player 2's Bet Amount TextField (Initially hidden) -->
-    <TextField fx:id="p2BetAmountTextField" layoutX="786.0" layoutY="305.0" prefWidth="200.0" promptText="Enter Player 2 Bet Amount" visible="false" />
+    <TextField fx:id="p2AnteBetAmount" layoutX="789.0" layoutY="247.0" prefHeight="25.0" prefWidth="193.0" promptText="Enter Player 2 Ante-Bet Amount" />
+    <TextField fx:id="p1PPBetAmount" layoutX="17.0" layoutY="338.0" prefHeight="25.0" prefWidth="193.0" promptText="Enter Player 1 PairPlus-Bet Amount" />
+    <TextField fx:id="p2PPBetAmount" layoutX="789.0" layoutY="326.0" prefHeight="25.0" prefWidth="193.0" promptText="Enter Player 2 PairPlus-Bet Amount" />
 
-    <!-- Player 1's Confirm Bet Button (Initially hidden) -->
-    <Button fx:id="p1ConfirmBetButton" layoutX="74.0" layoutY="350.0" onAction="#confirmP1Bet" text="Confirm Bet" visible="false" />
-
-    <!-- Player 2's Confirm Bet Button (Initially hidden) -->
-    <Button fx:id="p2ConfirmBetButton" layoutX="846.0" layoutY="350.0" onAction="#confirmP2Bet" prefHeight="15.0" prefWidth="79.0" text="Confirm Bet" visible="false" />
 
 </Pane>

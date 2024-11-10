@@ -47,15 +47,10 @@ public class GamePlayController implements Initializable {
     @FXML
     private Button p2PPButton;
 
-    @FXML
-    private TextField p1BetAmountTextField;
-    @FXML
-    private TextField p2BetAmountTextField;
-
-    @FXML
-    private Button p1ConfirmBetButton;
-    @FXML
-    private Button p2ConfirmBetButton;
+    @FXML public TextField p1AnteBetAmount;
+    @FXML public TextField p2AnteBetAmount;
+    @FXML public TextField p1PPBetAmount;
+    @FXML public TextField p2PPBetAmount;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -113,56 +108,29 @@ public class GamePlayController implements Initializable {
     // Event handler for Player 1's Ante Bet button click
     @FXML
     private void handleP1AnteBet(ActionEvent event) {
-        p1BetAmountTextField.setVisible(true);
-        p1ConfirmBetButton.setVisible(true);
+        int anteBet = Integer.parseInt(p1AnteBetAmount.getText());
+        playerOne.placeBet(anteBet, "ante");
     }
 
     // Event handler for Player 2's Ante Bet button click
     @FXML
     private void handleP2AnteBet(ActionEvent event) {
-        p2BetAmountTextField.setVisible(true);
-        p2ConfirmBetButton.setVisible(true);
+        int anteBet = Integer.parseInt(p2AnteBetAmount.getText());
+        playerTwo.placeBet(anteBet, "ante");
     }
 
     // Event handler for Player 1's Pair Plus Bet button click
     @FXML
     private void handleP1PPBet(ActionEvent event) {
-        p1BetAmountTextField.setVisible(true);
-        p1ConfirmBetButton.setVisible(true);
+        int ppBet = Integer.parseInt(p1PPBetAmount.getText());
+        playerOne.placeBet(ppBet, "pp");
     }
 
     // Event handler for Player 2's Pair Plus Bet button click
     @FXML
     private void handleP2PPBet(ActionEvent event) {
-        p2BetAmountTextField.setVisible(true);
-        p2ConfirmBetButton.setVisible(true);
+        int ppBet = Integer.parseInt(p2PPBetAmount.getText());
+        playerTwo.placeBet(ppBet, "pp");
     }
 
-    // Confirm Player 1's Bet
-    @FXML
-    private void confirmP1Bet(ActionEvent event) {
-        int betAmount = Integer.parseInt(p1BetAmountTextField.getText());
-        if (p1AnteBetButton.isFocused()) {
-            playerOne.placeBet(betAmount, "ante");
-        }
-        else if (p1PPButton.isFocused()) {
-            playerOne.placeBet(betAmount, "pp");
-        }
-        p1BetAmountTextField.setVisible(false);
-        p1ConfirmBetButton.setVisible(false);
-    }
-
-    // Confirm Player 2's Bet
-    @FXML
-    private void confirmP2Bet(ActionEvent event) {
-        int betAmount = Integer.parseInt(p2BetAmountTextField.getText());
-        if (p2AnteBetButton.isFocused()) {
-            playerTwo.placeBet(betAmount, "ante");
-        }
-        else if (p2PPButton.isFocused()) {
-            playerTwo.placeBet(betAmount, "pp");
-        }
-        p2BetAmountTextField.setVisible(false);
-        p2ConfirmBetButton.setVisible(false);
-    }
 }
