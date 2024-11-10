@@ -8,6 +8,8 @@
 <VBox prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="GamePlayController">
 
+    <Pane fx:id="GamePlayRoot" VBox.vgrow="ALWAYS">
+
     <!-- Menu bar at the top of the VBox -->
     <MenuBar>
         <Menu text="Options">
@@ -17,8 +19,6 @@
         </Menu>
     </MenuBar>
 
-    <!-- Main game area, with dealer and player cards -->
-    <Pane VBox.vgrow="ALWAYS">
     <!-- Dealer's Cards at the center top -->
     <VBox alignment="CENTER" layoutX="340.0" layoutY="21.0" spacing="20">
         <Text style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Dealer's Cards" />

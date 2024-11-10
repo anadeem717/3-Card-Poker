@@ -177,13 +177,16 @@ public class GamePlayController implements Initializable {
         theDealer.dealDealerHand();
         playerOne.setHand(theDealer.dealHand());
         playerTwo.setHand(theDealer.dealHand());
+
+        findCardImages(theDealer.getDealerHand(), playerOne.getHand(), playerTwo.getHand());
     }
 
     // Handle "NewLook" menu item action
     @FXML
     private void handleNewLook() {
+        // Clear any existing stylesheets
         GamePlayRoot.getStylesheets().clear();
-        GamePlayRoot.getStylesheets().add("");
+        GamePlayRoot.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
     }
 
     // Reset player winnings without modifying the Player class
