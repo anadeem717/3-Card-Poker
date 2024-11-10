@@ -16,6 +16,7 @@ public class DeckTest {
     void testInitialDeckSize() {
         assertEquals(52, deck.size());
         assertEquals(52, deck.getRemainingCards());
+
     }
 
     @Test
