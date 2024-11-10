@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="WelcomeRoot" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WelcomePageController">
+    <Text layoutX="188.0" layoutY="209.0" style="-fx-font-size: 50; -fx-font-weight: bold;" text="Welcome to 3 Card Poker!" wrappingWidth="623.90234375" />
+    <Button layoutX="250.0" layoutY="319.0" onAction="#handlePlayGame" prefHeight="63.0" prefWidth="187.0" text="Play Game" />
+    <Button layoutX="549.0" layoutY="319.0" onAction="#handleExit" prefHeight="63.0" prefWidth="187.0" text="Exit" />
+</Pane>
