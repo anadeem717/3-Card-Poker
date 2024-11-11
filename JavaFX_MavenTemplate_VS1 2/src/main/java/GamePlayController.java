@@ -585,6 +585,8 @@ public class GamePlayController implements Initializable {
         // Get the GamePlayController instance
         GamePlayController gamePlayController = loader.getController();
 
+        resetPlayerWinnings();
+
         // Pass the player and dealer instances
         gamePlayController.setPlayersAndDealer(playerOne, playerTwo, theDealer);
 
