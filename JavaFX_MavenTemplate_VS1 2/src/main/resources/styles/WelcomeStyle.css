@@ -6,7 +6,7 @@
 #titleLabel {
     -fx-background-color: #933434; /* Background color of the rectangle */
     -fx-text-fill: #000000; /* Text color */
-    -fx-font-size: 40px;
+    -fx-font-size: 35px;
     -fx-font-weight: bold;
     -fx-font-family: "Verdana";
     -fx-alignment: center; /* Center text alignment */

@@ -4,8 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+
 <Pane fx:id="WelcomeRoot" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WelcomePageController" stylesheets="/styles/WelcomeStyle.css">
-    <Text fx:id="titleLabel" layoutX="188.0" layoutY="209.0" text="Welcome to 3 Card Poker!" wrappingWidth="623.90234375" />
-    <Button fx:id="playGameButton" layoutX="250.0" layoutY="319.0" onAction="#handlePlayGame" prefHeight="63.0" prefWidth="187.0" text="Play Game" />
-    <Button fx:id="exitButton" layoutX="549.0" layoutY="319.0" onAction="#handleExit" prefHeight="63.0" prefWidth="187.0" text="Exit" />
+
+    <!-- VBox to wrap the title with the red border and a background color -->
+    <VBox fx:id="titleBox" layoutX="188.0" layoutY="120.0" spacing="20" alignment="CENTER"
+          style="-fx-border-color: #000000; -fx-border-width: 5; -fx-padding: 20; -fx-background-color: #933434; -fx-border-radius: 15; -fx-background-radius: 15;">
+        <!-- The Text "Welcome to 3 Card Poker" -->
+        <Text fx:id="titleLabel" text="Welcome to 3 Card Poker!" wrappingWidth="623.90234375" style="-fx-font-size: 40px; -fx-font-weight: bold;" />
+    </VBox>
+
+    <!-- HBox to wrap buttons horizontally below the red border, aligned center -->
+    <HBox layoutX="0.0" layoutY="320.0" spacing="20" alignment="CENTER" prefWidth="1000.0">
+        <!-- Play Game Button -->
+        <Button fx:id="playGameButton" onAction="#handlePlayGame" prefHeight="63.0" prefWidth="187.0" text="Play Game" />
+
+        <!-- Exit Button -->
+        <Button fx:id="exitButton" onAction="#handleExit" prefHeight="63.0" prefWidth="187.0" text="Exit" />
+    </HBox>
+
 </Pane>

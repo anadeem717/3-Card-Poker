@@ -308,7 +308,7 @@ public class ThreeCardLogicTest {
     }
 
     @Test
-    public void testCompareHands_Player1LosesWithLowerSecondaryCards() {
+    public void testCompareHands_LowerSecondaryCards() {
         // Dealer hand: King, 7, 8 (High Card: King, secondary cards 8 and 7)
         ArrayList<Card> dealerHand = new ArrayList<>();
         dealerHand.add(new Card('H', 13)); // King of Hearts
