@@ -43,9 +43,20 @@ public class ThreeCardLogic {
         int dealerVal = evalHand(dealer);
         int playerVal = evalHand(player);
 
-        if (dealerVal == playerVal) return 0; // tie
-        else if (dealerVal > playerVal) return 1;  // dealer wins
-        else return 2;  // player wins
+        if (dealerVal == playerVal) {
+            // If both hands are a straight, compare the highest card
+            if (dealerVal == 3) {
+                int dealerHighCard = getHighCardInStraight(dealer);
+                int playerHighCard = getHighCardInStraight(player);
+                if (dealerHighCard > playerHighCard) return 1; // dealer wins
+                else if (dealerHighCard < playerHighCard) return 2; // player wins
+            }
+            return 0; // tie
+        } else if (dealerVal > playerVal) {
+            return 1; // dealer wins
+        } else {
+            return 2; // player wins
+        }
     }
 
     // Method that checks to see if the hand is a 'Straight'
@@ -66,7 +77,22 @@ public class ThreeCardLogic {
             }
         }
 
-        return true; // straight
+        return true; // it's a straight
+    }
+
+    // Method to get the highest card in a straight
+    public static int getHighCardInStraight(ArrayList<Card> hand) {
+        // Create a array of card values
+        ArrayList<Integer> values = new ArrayList<>();
+        for (Card card : hand) {
+            values.add(card.value); // get the value of each card
+        }
+
+        // sort the card values
+        Collections.sort(values);
+
+        // return the highest card in straight
+        return values.get(values.size() - 1);
     }
 
 
