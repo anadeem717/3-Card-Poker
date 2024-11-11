@@ -368,7 +368,7 @@ public class GamePlayController implements Initializable {
                 playerOne.updateWinnings(p1PPWinnings);
             } else {
                 appendGameInfo("- Player 1 loses Pair Plus");
-                playerOne.updateWinnings(-playerOne.getPairPlusBet());
+                playerOne.updateWinnings(-(playerOne.getPairPlusBet()));
             }
 
             p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
@@ -383,7 +383,7 @@ public class GamePlayController implements Initializable {
                 playerTwo.updateWinnings(p2PPWinnings);
             } else {
                 appendGameInfo("- Player 2 loses Pair Plus");
-                playerOne.updateWinnings(-playerTwo.getPairPlusBet());
+                playerTwo.updateWinnings(-(playerTwo.getPairPlusBet()));
             }
 
             p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
