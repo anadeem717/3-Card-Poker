@@ -52,7 +52,7 @@ public class Player {
         this.hand = newHand;
     }
 
-    // Method that gets the playes hand
+    // Method that gets the players hand
     public ArrayList<Card> getHand() {
         return this.hand;
     }

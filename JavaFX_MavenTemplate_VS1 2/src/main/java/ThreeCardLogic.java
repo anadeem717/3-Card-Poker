@@ -120,5 +120,19 @@ public class ThreeCardLogic {
         return true; // three of a kind
     }
 
+    // Method to check if dealer's hand qualifies (Queen high or better)
+    public static boolean handQualifies(ArrayList<Card> hand) {
+        // Find the highest card in the hand
+        int highestCardValue = 0;
+
+        for (Card card : hand) {
+            if (card.value > highestCardValue) {
+                highestCardValue = card.value;
+            }
+        }
+
+        // Check if the highest card is Queen (value 12) or better (value 13 or 14)
+        return highestCardValue >= 12;
+    }
 
 }

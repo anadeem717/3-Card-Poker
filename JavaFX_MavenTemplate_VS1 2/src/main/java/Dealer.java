@@ -52,4 +52,5 @@ public class Dealer {
     public void shuffleNewDeck() {
         theDeck.newDeck();
     }
+
 }
