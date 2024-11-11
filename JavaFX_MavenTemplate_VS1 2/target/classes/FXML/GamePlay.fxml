@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamePlayController">
+<VBox prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamePlayController" stylesheets="/styles/GamePlayStyle.css">
 
     <Pane fx:id="GamePlayRoot" VBox.vgrow="ALWAYS">
 
         <!-- Menu bar at the top of the VBox -->
-        <MenuBar prefHeight="25.0" prefWidth="117.0">
+        <MenuBar prefHeight="25.0">
             <Menu text="      OPTIONS">
                 <MenuItem onAction="#handleExit" text="Exit" />
                 <MenuItem onAction="#handleFreshStart" text="Fresh Start" />
