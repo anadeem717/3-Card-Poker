@@ -134,6 +134,22 @@
     -fx-wrap-text: true; /* Ensure text wraps inside the TextArea */
 }
 
+#p1Winnings,
+#P1anteBetText,
+#P1PPBetText,
+#P1PlayBetText {
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+#p2Winnings,
+#P2anteBetText,
+#P2PPBetText,
+#P2PlayBetText {
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
 /* Additional Adjustments for Layout */
 .vbox-center {
     -fx-alignment: center;
