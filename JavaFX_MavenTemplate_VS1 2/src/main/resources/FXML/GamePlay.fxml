@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamePlayController" stylesheets="/styles/GamePlayStyle.css">
+<VBox prefHeight="700.0" prefWidth="1000.0" stylesheets="/styles/GamePlayStyle.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamePlayController">
 
     <Pane fx:id="GamePlayRoot" VBox.vgrow="ALWAYS">
 
         <!-- Menu bar at the top of the VBox -->
-        <MenuBar prefHeight="25.0">
-            <Menu text="      OPTIONS">
+        <MenuBar layoutX="27.0" layoutY="18.0" prefHeight="25.0" prefWidth="88.0">
+            <Menu text="OPTIONS">
                 <MenuItem onAction="#handleExit" text="Exit" />
                 <MenuItem onAction="#handleFreshStart" text="Fresh Start" />
                 <MenuItem onAction="#handleNewLook" text="NewLook" />
@@ -68,7 +68,7 @@
         <Button fx:id="dealCardsButton" disable="true" layoutX="450.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleDealCards" prefHeight="47.0" prefWidth="100.0" text="Deal Cards" />
 
         <!-- Player 1's Bet VBox -->
-        <VBox fx:id="p1BetsVBox" alignment="CENTER" layoutX="37.0" layoutY="159.0" spacing="10">
+        <VBox fx:id="p1BetsVBox" alignment="CENTER" layoutX="36.0" layoutY="215.0" spacing="10">
             <TextField fx:id="p1AnteBetAmount" prefHeight="25.0" prefWidth="193.0" promptText="Enter Player 1 Ante Bet Amount" />
             <Button fx:id="p1AnteBetButton" mnemonicParsing="false" onAction="#handleP1AnteBet" text="Place Ante Wager" />
             <TextField fx:id="p1PPBetAmount" prefHeight="25.0" prefWidth="204.0" promptText="Enter Player 1 Pair-Plus Bet Amount" />
@@ -76,7 +76,7 @@
         </VBox>
 
         <!-- Player 2's Bet VBox -->
-        <VBox fx:id="p2BetsVBox" alignment="CENTER" layoutX="748.0" layoutY="159.0" spacing="10">
+        <VBox fx:id="p2BetsVBox" alignment="CENTER" layoutX="748.0" layoutY="215.0" spacing="10">
             <TextField fx:id="p2AnteBetAmount" prefHeight="25.0" prefWidth="193.0" promptText="Enter Player 2 Ante Bet Amount" />
             <Button fx:id="p2AnteBetButton" mnemonicParsing="false" onAction="#handleP2AnteBet" text="Place Ante Wager" />
             <TextField fx:id="p2PPBetAmount" prefHeight="25.0" prefWidth="204.0" promptText="Enter Player 2 Pair-Plus Bet Amount" />
@@ -91,10 +91,9 @@
       <Button fx:id="continueButton" focusTraversable="false" layoutX="445.0" layoutY="313.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" text="Continue" visible="false" />
 
         <!-- Game Info Section for displaying game updates -->
-        <VBox alignment="CENTER" layoutX="300.0" layoutY="500.0" prefWidth="400.0" spacing="10">
-            <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Game Info" />
-        </VBox>
-         <TextArea fx:id="gameInfoArea" editable="false" layoutX="733.0" layoutY="13.0" prefHeight="100.0" prefWidth="244.0" wrapText="true" />
+        <VBox alignment="CENTER" layoutX="300.0" layoutY="500.0" prefWidth="400.0" spacing="10" />
+         <TextArea fx:id="gameInfoArea" editable="false" layoutX="730.0" layoutY="35.0" prefHeight="114.0" prefWidth="244.0" wrapText="true" />
+         <Text layoutX="811.0" layoutY="29.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Game Info" />
 
     </Pane>
 
