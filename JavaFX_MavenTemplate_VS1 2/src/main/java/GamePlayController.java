@@ -285,11 +285,6 @@ public class GamePlayController implements Initializable {
         p1Play.setDisable(true);
         p1Fold.setDisable(true);
 
-        // evaluate PairPlus wins
-        int res = ThreeCardLogic.evalPPWinnings(playerOne.getHand(), playerOne.getPairPlusBet());
-        playerOne.updateWinnings(res);
-        p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
-
         p1Selected = true;
         p1Folded = false;
 
@@ -299,14 +294,10 @@ public class GamePlayController implements Initializable {
 
     @FXML private void handleP2Play(ActionEvent event) {
         playerTwo.setPlayBet(playerTwo.getAnteBet());
-        P2PlayBetText.setText("Ante Wager: $" + Integer.toString(playerTwo.getPlayBet()));
+        P2PlayBetText.setText("Play Wager: $" + Integer.toString(playerTwo.getPlayBet()));
         p2Play.setDisable(true);
         p2Fold.setDisable(true);
 
-        // evaluate PairPlus wins
-        int res = ThreeCardLogic.evalPPWinnings(playerTwo.getHand(), playerTwo.getPairPlusBet());
-        playerTwo.updateWinnings(res);
-        p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
 
         p2Selected = true;
         p2Folded = false;
@@ -371,25 +362,31 @@ public class GamePlayController implements Initializable {
         // Evaluate Player 1's Pair Plus winnings
         if (playerOne.getPairPlusBet() > 0) { // Check if Player 1 placed a Pair Plus bet
             int p1PPWinnings = ThreeCardLogic.evalPPWinnings(playerOne.getHand(), playerOne.getPairPlusBet());
-            playerOne.updateWinnings((p1PPWinnings + playerOne.getTotalWinnings()) - playerOne.getPairPlusBet() );
 
             if (p1PPWinnings > 0) {
                 appendGameInfo("- Player 1 wins Pair Plus: $" + p1PPWinnings);
+                playerOne.updateWinnings(p1PPWinnings);
             } else {
                 appendGameInfo("- Player 1 loses Pair Plus");
+                playerOne.updateWinnings(-playerOne.getPairPlusBet());
             }
+
+            p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
         }
 
         // Evaluate Player 2's Pair Plus winnings
         if (playerTwo.getPairPlusBet() > 0) { // Check if Player 2 placed a Pair Plus bet
             int p2PPWinnings = ThreeCardLogic.evalPPWinnings(playerTwo.getHand(), playerTwo.getPairPlusBet());
-            playerTwo.updateWinnings((p2PPWinnings + playerTwo.getTotalWinnings()) - playerTwo.getPairPlusBet() );
 
             if (p2PPWinnings > 0) {
                 appendGameInfo("- Player 2 wins Pair Plus: $" + p2PPWinnings);
+                playerTwo.updateWinnings(p2PPWinnings);
             } else {
                 appendGameInfo("- Player 2 loses Pair Plus");
+                playerOne.updateWinnings(-playerTwo.getPairPlusBet());
             }
+
+            p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
         }
     }
 
@@ -468,6 +465,11 @@ public class GamePlayController implements Initializable {
         playerOne.setPlayBet(0);
         playerTwo.setPlayBet(0);
 
+        P1PPBetText.setText("PairPlus Bet: $0");
+        P2PPBetText.setText("PairPlus Bet: $0");
+        playerOne.setPairPlusBet(0);
+        playerTwo.setPairPlusBet(0);
+
         // Initial card setup
         theDealer.dealDealerHand();
         playerOne.setHand(theDealer.dealHand());
@@ -532,6 +534,7 @@ public class GamePlayController implements Initializable {
         P2PlayBetText.setText("Play Wager: $0");
         p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
         p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
+        gameInfoArea.clear();
 
     }
 
