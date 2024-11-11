@@ -10,7 +10,7 @@
     <Pane fx:id="GamePlayRoot" VBox.vgrow="ALWAYS">
 
         <!-- Menu bar at the top of the VBox -->
-        <MenuBar layoutX="27.0" layoutY="18.0" prefHeight="25.0" prefWidth="88.0">
+        <MenuBar layoutX="27.0" layoutY="18.0" prefHeight="25.0">
             <Menu text="OPTIONS">
                 <MenuItem onAction="#handleExit" text="Exit" />
                 <MenuItem onAction="#handleFreshStart" text="Fresh Start" />
