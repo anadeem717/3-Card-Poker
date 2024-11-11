@@ -306,4 +306,25 @@ public class ThreeCardLogicTest {
 
         assertFalse(ThreeCardLogic.isThreeOfAKind(hand)); // not three of a kind
     }
+
+    @Test
+    public void testCompareHands_Player1LosesWithLowerSecondaryCards() {
+        // Dealer hand: King, 7, 8 (High Card: King, secondary cards 8 and 7)
+        ArrayList<Card> dealerHand = new ArrayList<>();
+        dealerHand.add(new Card('H', 13)); // King of Hearts
+        dealerHand.add(new Card('D', 7));  // 7 of Diamonds
+        dealerHand.add(new Card('S', 8));  // 8 of Spades
+
+        // Player 1 hand: King, 3, 4 (High Card: King, secondary cards 4 and 3)
+        ArrayList<Card> playerHand = new ArrayList<>();
+        playerHand.add(new Card('C', 13)); // King of Clubs
+        playerHand.add(new Card('D', 3));  // 3 of Diamonds
+        playerHand.add(new Card('S', 4));  // 4 of Spades
+
+        // Execute the comparison
+        int result = ThreeCardLogic.compareHands(dealerHand, playerHand);
+
+        // Assert that the dealer wins (expected result is 1 for dealer win)
+        assertEquals(1, result, "Dealer should win when they have higher secondary cards in a high-card tie.");
+    }
 }
