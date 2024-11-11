@@ -404,22 +404,22 @@ public class GamePlayController implements Initializable {
             int p2Res = ThreeCardLogic.compareHands(dealerHand, playerTwo.getHand());
 
             if (p1Res == 1) { // dealer wins
-                playerOne.updateWinnings(playerOne.getTotalWinnings() - (playerOne.getAnteBet()*2));
+                playerOne.updateWinnings(-(playerOne.getAnteBet()*2));
                 appendGameInfo("- Player 1 loses to dealer");
             }
 
             if (p2Res == 1) {
-                playerTwo.updateWinnings(playerTwo.getTotalWinnings() - (playerTwo.getAnteBet()*2));
+                playerTwo.updateWinnings(-(playerTwo.getAnteBet()*2));
                 appendGameInfo("- Player 2 loses to dealer");
             }
 
             if (p1Res == 2) { // player wins
-                playerOne.updateWinnings(playerOne.getTotalWinnings() + (playerOne.getAnteBet()));
+                playerOne.updateWinnings((playerOne.getAnteBet()));
                 appendGameInfo("- Player 1 beats dealer");
             }
 
             if (p2Res == 2) {
-                playerTwo.updateWinnings(playerTwo.getTotalWinnings() + (playerTwo.getAnteBet()));
+                playerTwo.updateWinnings((playerTwo.getAnteBet()));
                 appendGameInfo("- Player 2 beats dealer");
             }
 

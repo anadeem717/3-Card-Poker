@@ -43,18 +43,26 @@ public class ThreeCardLogic {
         int dealerVal = evalHand(dealer);
         int playerVal = evalHand(player);
 
-        if (dealerVal == 3 && playerVal == 3) {
-            int dealerHighCard = getHighCardInStraight(dealer);
-            int playerHighCard = getHighCardInStraight(player);
-            if (dealerHighCard > playerHighCard) return 1; // dealer wins
-            else if (dealerHighCard < playerHighCard) return 2; // player wins
-        }
-
         if (dealerVal == playerVal) {
-            return 0; // tie
-        } else if (dealerVal > playerVal) {
+            // both straights / (flush), pair
+            if (dealerVal == 3 || dealerVal == 1 || dealerVal == 5) {
+                int dealerHighCard = getHighCardInStraight(dealer);
+                int playerHighCard = getHighCardInStraight(player);
+                if (dealerHighCard > playerHighCard) return 1; // dealer wins
+                else if (dealerHighCard < playerHighCard) return 2; // player wins
+                else return 0;
+            }
+            else if (dealerVal == 2) {
+                int dVal = dealer.get(0).value;
+                int pVal = player.get(0).value;
+                if (dVal > pVal) return 1; // dealer wins
+                else if (dVal < pVal) return 2; // player wins
+            }
+        }
+        if (dealerVal > playerVal) {
             return 1; // dealer wins
-        } else {
+        }
+        else {
             return 2; // player wins
         }
     }
