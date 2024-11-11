@@ -4,34 +4,28 @@
 
 /* Style for the menu bar */
 .menu-bar {
-    -fx-background-color: #717070;
-    -fx-text-fill: #ffffff; /* Set text color to white */
+    -fx-background-color: #b8b8b8;
+    -fx-text-fill: #000000; /* Set text color to white */
 }
 
 .menu-item {
-    -fx-text-fill: #ffffff; /* Set menu item text color to white */
+    -fx-text-fill: #000000; /* Set menu item text color to white */
 }
 
 .menu-item:hover {
-    -fx-background-color: #454545;
-    -fx-text-fill: #ffffff; /* Ensure text stays white on hover */
-}
-
-/* Text styling */
-.text {
-    -fx-fill: #ffffff; /* Set default text color to white */
+    -fx-background-color: #b8b8b8;
+    -fx-text-fill: #000000; /* Ensure text stays white on hover */
 }
 
 .text-bold {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-fill: #ffffff; /* Ensure bold text is white */
 }
 
 .text-small {
     -fx-font-size: 10px;
     -fx-font-weight: bold;
-    -fx-fill: #ffffff; /* Ensure small text is white */
+    -fx-text-fill: #000000;
 }
 
 /* TextArea Styling */
@@ -123,6 +117,20 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-fill: white; /* White text color */
+}
+
+.game-info-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: #ffffff; /* Black text color for the Game Info label */
+}
+
+/* Style for the Game Info TextArea to ensure black text */
+#gameInfoArea {
+    -fx-text-fill: black; /* Black text color inside the TextArea */
+    -fx-font-size: 14px; /* Optional: Adjust font size */
+    -fx-font-family: Arial, sans-serif; /* Optional: Set a font */
+    -fx-wrap-text: true; /* Ensure text wraps inside the TextArea */
 }
 
 /* Additional Adjustments for Layout */
