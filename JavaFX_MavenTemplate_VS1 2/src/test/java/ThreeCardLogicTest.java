@@ -59,6 +59,40 @@ public class ThreeCardLogicTest {
     }
 
     @Test
+    public void testCompareHandsDealerHasHigherPair() {
+        // Dealer has a pair of Jacks (J = 11)
+        ArrayList<Card> dealerHand = new ArrayList<>();
+        dealerHand.add(createCard('H', 11)); // Jack
+        dealerHand.add(createCard('D', 11)); // Jack
+        dealerHand.add(createCard('S', 5));  // 5
+
+        // Player has a pair of 10s (10 = 10)
+        ArrayList<Card> playerHand = new ArrayList<>();
+        playerHand.add(createCard('S', 10)); // 10
+        playerHand.add(createCard('H', 10)); // 10
+        playerHand.add(createCard('D', 7));  // 7
+
+        assertEquals(1, ThreeCardLogic.compareHands(dealerHand, playerHand)); // Dealer wins
+    }
+
+    @Test
+    public void testCompareHandsPlayerHasHigherPair() {
+        // Dealer has a pair of 10s (10 = 10)
+        ArrayList<Card> dealerHand = new ArrayList<>();
+        dealerHand.add(createCard('H', 10)); // 10
+        dealerHand.add(createCard('S', 10)); // 10
+        dealerHand.add(createCard('D', 7));  // 7
+
+        // Player has a pair of Jacks (J = 11)
+        ArrayList<Card> playerHand = new ArrayList<>();
+        playerHand.add(createCard('S', 11)); // Jack
+        playerHand.add(createCard('H', 11)); // Jack
+        playerHand.add(createCard('D', 8));  // 8
+
+        assertEquals(2, ThreeCardLogic.compareHands(dealerHand, playerHand)); // Player wins
+    }
+
+    @Test
     public void testHighCard() {
         ArrayList<Card> hand = new ArrayList<>();
         hand.add(createCard('H', 2));
