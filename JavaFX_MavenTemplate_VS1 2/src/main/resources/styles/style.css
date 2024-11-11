@@ -2,21 +2,149 @@
     -fx-background-color: #3e3e40;
 }
 
-/* Style for buttons, labels, etc. */
+/* Buttons Styling */
 .button {
     -fx-font-size: 14px;
-    -fx-font-family: "Comic Sans MS";
+    -fx-font-family: "Impact";
     -fx-background-color: #933434;
     -fx-text-fill: #cd6363;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
 }
 
+.button:disabled {
+    -fx-background-color: #95a5a6; /* Disabled grey */
+}
+
+.button:hover {
+    -fx-background-color: #602424;
+}
+
+/* Label Styling */
 .label {
-    -fx-font-family: "Arial Black";
+    -fx-font-family: "Impact";
     -fx-font-size: 16px;
     -fx-text-fill: #933434;
 }
 
-/* Customize ImageView appearance */
+/* Text Styling */
+.text-bold {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.text-small {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+.text-centered {
+    -fx-text-alignment: center;
+}
+
+.text-cards {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: white;
+}
+
+/* Game Info Section */
+.game-info-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: #ffffff;
+}
+
+/* TextArea Styling */
+.text-area {
+    -fx-background-color: #933434;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #a01616;
+}
+
+/* VBox and HBox Containers */
+.vbox {
+    -fx-background-color: #933434;
+    -fx-border-color: #a01616;
+    -fx-border-width: 2px;
+}
+
+.vbox-center {
+    -fx-alignment: center;
+}
+
+.hbox-center {
+    -fx-alignment: center;
+}
+
+.hbox-spacing {
+    -fx-spacing: 10px;
+}
+
+/* Menu Bar Styling */
+.menu-bar {
+    -fx-background-color: #b8b8b8;
+    -fx-text-fill: #000000; /* Set text color to black */
+}
+
+.menu-item {
+    -fx-text-fill: #000000;
+}
+
+.menu-item:hover {
+    -fx-background-color: #b8b8b8;
+    -fx-text-fill: #000000; /* Ensure text stays black on hover */
+}
+
+/* Player and Dealer Cards Section */
+.dealer-cards-text,
+.player1-cards-text,
+.player2-cards-text {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-fill: #ca5555;
+    -fx-font-family: "Impact"
+}
+
+#p1Winnings,
+#P1anteBetText,
+#P1PPBetText,
+#P1PlayBetText,
+#p2Winnings,
+#P2anteBetText,
+#P2PPBetText,
+#P2PlayBetText {
+    -fx-fill: #ca5555;
+    -fx-font-weight: bold;
+    -fx-font-family: "Impact"
+}
+
+/* ImageView Styling */
 .image-view {
+    -fx-border-color: #933434;
+    -fx-border-width: 2px;
     -fx-effect: dropshadow(gaussian, black, 10, 0.5, 0, 0);
+}
+
+/* Game Info Section VBox */
+.vbox-game-info {
+    -fx-background-color: #933434;
+    -fx-border-color: #933434;
+    -fx-border-width: 2px;
+}
+
+/* Bet Sections VBox */
+.vbox-bets {
+    -fx-background-color: #933434;
+    -fx-border-color: #933434;
+    -fx-border-width: 2px;
+}
+
+/* Style for the Game Info TextArea */
+#gameInfoArea {
+    -fx-text-fill: black; /* Black text color inside the TextArea */
+    -fx-font-size: 14px;
+    -fx-font-family: Arial, sans-serif;
+    -fx-wrap-text: true; /* Ensure text wraps inside the TextArea */
 }
