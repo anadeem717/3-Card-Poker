@@ -159,6 +159,8 @@ public class ThreeCardLogic {
         // Find the highest card in the hand
         int highestCardValue = 0;
 
+        if (evalHand(hand) > 0) return true;
+
         for (Card card : hand) {
             if (card.value > highestCardValue) {
                 highestCardValue = card.value;
