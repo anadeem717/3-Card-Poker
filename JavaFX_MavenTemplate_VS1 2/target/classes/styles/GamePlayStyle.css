@@ -1,0 +1,113 @@
+.root {
+    -fx-background-color: #204312; /* Dark Blue */
+}
+
+/* Style for the menu bar */
+.menu-bar {
+    -fx-background-color: #717070; /* Dark Greyish Blue */
+    -fx-text-fill: #000000;
+}
+
+.menu-item {
+    -fx-text-fill: #000000;
+}
+
+.menu-item:hover {
+    -fx-background-color: #454545; /* Teal */
+}
+
+/* Text styling */
+.text {
+    -fx-fill: #000000;
+}
+
+.text-bold {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.text-small {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+/* TextArea Styling */
+.text-area {
+    -fx-background-color: #933434; /* Dark Grey */
+    -fx-text-fill: #000000;
+    -fx-border-color: #a01616; /* Light Teal */
+}
+
+/* VBox container for Player's and Dealer's Cards */
+.vbox {
+    -fx-background-color: #933434; /* Light Teal */
+    -fx-border-color: #a01616; /* Darker Teal */
+    -fx-border-width: 2px;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: #933434; /* Light Teal */
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+}
+
+.button:disabled {
+    -fx-background-color: #95a5a6; /* Disabled grey */
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    -fx-background-color: #602424; /* Light Teal Hover */
+}
+
+/* ImageView for displaying cards */
+.image-view {
+    -fx-border-color: #933434; /* Border around cards */
+    -fx-border-width: 2px;
+}
+
+/* VBox for game info section */
+.vbox-game-info {
+    -fx-background-color: #933434; /* Dark Grey */
+    -fx-border-color: #933434; /* Teal Border */
+}
+
+/* Style for the labels and bet sections */
+.hbox-bet-section {
+    -fx-background-color: #933434; /* Dark Grey */
+    -fx-text-fill: #000000;
+}
+
+/* Styling for the Player's Bet VBox sections */
+.vbox-bets {
+    -fx-background-color: #933434; /* Light Teal */
+    -fx-border-color: #933434;
+    -fx-border-width: 2px;
+}
+
+/* Styling for the GameInfo section */
+.vbox-game-info {
+    -fx-background-color: #933434; /* Dark Blue */
+    -fx-border-color: #933434; /* Teal */
+    -fx-border-width: 2px;
+}
+
+/* Additional Adjustments for Layout */
+.vbox-center {
+    -fx-alignment: center;
+}
+
+.hbox-center {
+    -fx-alignment: center;
+}
+
+.hbox-spacing {
+    -fx-spacing: 10px;
+}
+
+.text-centered {
+    -fx-text-alignment: center;
+}
