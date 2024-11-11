@@ -16,8 +16,20 @@ public class WelcomePageController implements Initializable {
     @FXML
     private Pane GamePlayRoot;
 
+    // Player and Dealer objects (adjust these to match your actual classes)
+    private Player playerOne;
+    private Player playerTwo;
+    private Dealer theDealer;
+
+    public void setPlayersAndDealer(Player playerOne, Player playerTwo, Dealer theDealer) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
+        this.theDealer = theDealer;
+    }
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 
     @FXML
     private void handlePlayGame(ActionEvent event) {
@@ -26,11 +38,15 @@ public class WelcomePageController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GamePlay.fxml"));
             Parent GamePlayRoot = loader.load();
 
+            // Get the GamePlayController instance
+            GamePlayController controller = loader.getController();
+
+            // Pass players and dealer to the GamePlayController
+            controller.setPlayersAndDealer(playerOne, playerTwo, theDealer);
+
+            // Switch to the GamePlayRoot
             WelcomeRoot.getScene().setRoot(GamePlayRoot);
-
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

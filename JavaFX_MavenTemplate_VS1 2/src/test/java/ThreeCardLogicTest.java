@@ -149,7 +149,7 @@ public class ThreeCardLogicTest {
         hand.add(createCard('S', 8));
         hand.add(createCard('D', 10));
 
-        assertEquals(3, ThreeCardLogic.evalPPWinnings(hand, 3)); // pair * 1
+        assertEquals(6, ThreeCardLogic.evalPPWinnings(hand, 3)); // pair * 2
     }
 
     @Test

@@ -32,7 +32,7 @@ public class ThreeCardLogic {
         if (value == 2) return bet * 30; // 3 of a kind
         if (value == 3) return bet * 6;  // straight
         if (value == 4) return bet * 3;  // flush
-        if (value == 5) return bet;      // pair
+        if (value == 5) return bet * 2;      // pair
 
         return 0; // lost pair plus
     }
@@ -46,20 +46,26 @@ public class ThreeCardLogic {
         // If both hands are of the same type
         if (dealerVal == playerVal) {
             if (dealerVal == 4 || dealerVal == 0) { // Flush or High Card case
-                return compareHighCards(dealer, player); // Compare based on high cards
-            } else if (dealerVal == 3 || dealerVal == 1) { // Straight or Straight Flush case
+                return compareHighCards(dealer, player); // Compare high cards
+            }
+
+            else if (dealerVal == 3 || dealerVal == 1) { // Straight or Straight Flush case
                 int dealerHighCard = getHighCardInStraight(dealer);
                 int playerHighCard = getHighCardInStraight(player);
                 if (dealerHighCard > playerHighCard) return 1; // Dealer wins
                 else if (dealerHighCard < playerHighCard) return 2; // Player wins
                 else return 0; // Tie
-            } else if (dealerVal == 2) { // Three of a Kind case
+            }
+
+            else if (dealerVal == 2) { // Three of a Kind case
                 int dealerValSingle = dealer.get(0).value; // All cards have the same value
                 int playerValSingle = player.get(0).value;
                 if (dealerValSingle > playerValSingle) return 1; // Dealer wins
                 else if (dealerValSingle < playerValSingle) return 2; // Player wins
                 else return 0; // Tie
-            } else if (dealerVal == 5) { // Pair case
+            }
+
+            else if (dealerVal == 5) { // Pair case
                 return comparePairs(dealer, player); // Compare pairs and kickers
             }
         }
@@ -76,7 +82,8 @@ public class ThreeCardLogic {
         for (Card card : dealer) dealerValues.add(card.value);
         for (Card card : player) playerValues.add(card.value);
 
-        Collections.sort(dealerValues, Collections.reverseOrder()); // Sort descending
+        // sort descending, so highest is first
+        Collections.sort(dealerValues, Collections.reverseOrder());
         Collections.sort(playerValues, Collections.reverseOrder());
 
         for (int i = 0; i < dealerValues.size(); i++) {
@@ -94,7 +101,7 @@ public class ThreeCardLogic {
         if (dealerPairValue > playerPairValue) return 1; // Dealer's pair is higher
         if (dealerPairValue < playerPairValue) return 2; // Player's pair is higher
 
-        // If pairs are the same, compare kickers
+        // if pairs same, compare the 3rd card
         return compareHighCards(dealer, player);
     }
 
@@ -109,7 +116,7 @@ public class ThreeCardLogic {
                 }
             }
         }
-        return -1; // Should not happen for valid pairs
+        return -1; // not poss
     }
 
 

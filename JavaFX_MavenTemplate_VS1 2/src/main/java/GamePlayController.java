@@ -24,9 +24,9 @@ public class GamePlayController implements Initializable {
     @FXML
     private Pane GamePlayRoot;
 
-    Player playerOne;
-    Player playerTwo;
-    Dealer theDealer;
+    private Player playerOne;
+    private Player playerTwo;
+    private Dealer theDealer;
 
     @FXML private ImageView dealerCard1;
     @FXML private ImageView dealerCard2;
@@ -89,15 +89,6 @@ public class GamePlayController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        theDealer = new Dealer();
-        playerOne = new Player();
-        playerTwo = new Player();
-
-        // Initial card setup
-        theDealer.dealDealerHand();
-        playerOne.setHand(theDealer.dealHand());
-        playerTwo.setHand(theDealer.dealHand());
-        findCardImages(theDealer.getDealerHand(), playerOne.getHand(), playerTwo.getHand());
 
         // Disable Deal Cards button and betting buttons initially
         dealCardsButton.setDisable(true);
@@ -105,6 +96,20 @@ public class GamePlayController implements Initializable {
         p2AnteBetButton.setDisable(false);
         p1PPButton.setDisable(false);
         p2PPButton.setDisable(false);
+    }
+
+    public void setPlayersAndDealer(Player playerOne, Player playerTwo, Dealer theDealer) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
+        this.theDealer = theDealer;
+
+        // Initialize hands for players and dealer
+        theDealer.dealDealerHand();
+        playerOne.setHand(theDealer.dealHand());
+        playerTwo.setHand(theDealer.dealHand());
+
+        // Initialize card images
+        findCardImages(theDealer.getDealerHand(), playerOne.getHand(), playerTwo.getHand());
     }
 
 
@@ -411,12 +416,12 @@ public class GamePlayController implements Initializable {
             }
 
             if (p1Res == 2) { // player wins
-                playerOne.updateWinnings((playerOne.getAnteBet()));
+                playerOne.updateWinnings((playerOne.getAnteBet())*2);
                 appendGameInfo("- Player 1 beats dealer");
             }
 
             if (p2Res == 2) {
-                playerTwo.updateWinnings((playerTwo.getAnteBet()));
+                playerTwo.updateWinnings((playerTwo.getAnteBet())*2);
                 appendGameInfo("- Player 2 beats dealer");
             }
 
@@ -573,11 +578,20 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void handleFreshStart() throws IOException {
+        // Load the GamePlay FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/GamePlay.fxml"));
         Parent NewGamePlayRoot = loader.load();
 
+        // Get the GamePlayController instance
+        GamePlayController gamePlayController = loader.getController();
+
+        // Pass the player and dealer instances
+        gamePlayController.setPlayersAndDealer(playerOne, playerTwo, theDealer);
+
+        // Switch the scene
         GamePlayRoot.getScene().setRoot(NewGamePlayRoot);
     }
+
 
     // Handle "NewLook" menu item action
     @FXML
