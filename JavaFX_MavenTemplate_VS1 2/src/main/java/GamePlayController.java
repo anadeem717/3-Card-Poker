@@ -424,12 +424,12 @@ public class GamePlayController implements Initializable {
             }
 
             if (p1Res == 0) {
-                // tie
+                // p1 tie
                 appendGameInfo("- Player 1 ties with dealer");
             }
 
             if (p2Res == 0) {
-                // tie
+                // p2 tie
                 appendGameInfo("- Player 2 ties with dealer");
             }
 
