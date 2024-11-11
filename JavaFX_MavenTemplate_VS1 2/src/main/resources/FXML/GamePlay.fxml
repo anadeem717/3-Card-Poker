@@ -90,6 +90,12 @@
       <Button fx:id="revealButton" disable="true" layoutX="417.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleRevealDealer" prefHeight="47.0" prefWidth="167.0" text="REVEAL DEALER CARDS" visible="false" />
       <Button fx:id="continueButton" focusTraversable="false" layoutX="445.0" layoutY="313.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" text="Continue" visible="false" />
 
+        <!-- Game Info Section for displaying game updates -->
+        <VBox alignment="CENTER" layoutX="300.0" layoutY="500.0" prefWidth="400.0" spacing="10">
+            <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Game Info" />
+        </VBox>
+         <TextArea fx:id="gameInfoArea" editable="false" layoutX="733.0" layoutY="13.0" prefHeight="100.0" prefWidth="244.0" wrapText="true" />
+
     </Pane>
 
 </VBox>

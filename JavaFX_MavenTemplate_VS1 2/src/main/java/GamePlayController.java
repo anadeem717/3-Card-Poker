@@ -86,6 +86,8 @@ public class GamePlayController implements Initializable {
 
     private boolean dealerHandQualifies = false;
 
+    @FXML public TextArea gameInfoArea;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         theDealer = new Dealer();
@@ -365,8 +367,36 @@ public class GamePlayController implements Initializable {
         evaluateWin();
     }
 
+    private void evaluatePairPlus() {
+        // Evaluate Player 1's Pair Plus winnings
+        if (playerOne.getPairPlusBet() > 0) { // Check if Player 1 placed a Pair Plus bet
+            int p1PPWinnings = ThreeCardLogic.evalPPWinnings(playerOne.getHand(), playerOne.getPairPlusBet());
+            playerOne.updateWinnings((p1PPWinnings + playerOne.getTotalWinnings()) - playerOne.getPairPlusBet() );
+
+            if (p1PPWinnings > 0) {
+                appendGameInfo("- Player 1 wins Pair Plus: $" + p1PPWinnings);
+            } else {
+                appendGameInfo("- Player 1 loses Pair Plus");
+            }
+        }
+
+        // Evaluate Player 2's Pair Plus winnings
+        if (playerTwo.getPairPlusBet() > 0) { // Check if Player 2 placed a Pair Plus bet
+            int p2PPWinnings = ThreeCardLogic.evalPPWinnings(playerTwo.getHand(), playerTwo.getPairPlusBet());
+            playerTwo.updateWinnings((p2PPWinnings + playerTwo.getTotalWinnings()) - playerTwo.getPairPlusBet() );
+
+            if (p2PPWinnings > 0) {
+                appendGameInfo("- Player 2 wins Pair Plus: $" + p2PPWinnings);
+            } else {
+                appendGameInfo("- Player 2 loses Pair Plus");
+            }
+        }
+    }
+
 
     private void evaluateWin() throws IOException {
+
+        evaluatePairPlus();
         ArrayList<Card> dealerHand = theDealer.getDealerHand();
         if (ThreeCardLogic.handQualifies(dealerHand)) {
             dealerHandQualifies = true;
@@ -374,33 +404,33 @@ public class GamePlayController implements Initializable {
             int p2Res = ThreeCardLogic.compareHands(dealerHand, playerTwo.getHand());
 
             if (p1Res == 1) { // dealer wins
-                playerOne.updateWinnings(playerOne.getTotalWinnings() - (playerOne.getAnteBet())*2);
-                System.out.println("dealer won against p1");
+                playerOne.updateWinnings(playerOne.getTotalWinnings() - (playerOne.getAnteBet()*2));
+                appendGameInfo("- Player 1 loses to dealer");
             }
 
             if (p2Res == 1) {
-                playerTwo.updateWinnings(playerTwo.getTotalWinnings() - (playerTwo.getAnteBet())*2);
-                System.out.println("dealer won against p2");
+                playerTwo.updateWinnings(playerTwo.getTotalWinnings() - (playerTwo.getAnteBet()*2));
+                appendGameInfo("- Player 2 loses to dealer");
             }
 
             if (p1Res == 2) { // player wins
-                playerOne.updateWinnings(playerOne.getTotalWinnings() + (playerOne.getAnteBet())*2);
-                System.out.println("player 1 won");
+                playerOne.updateWinnings(playerOne.getTotalWinnings() + (playerOne.getAnteBet()));
+                appendGameInfo("- Player 1 beats dealer");
             }
 
             if (p2Res == 2) {
-                playerTwo.updateWinnings(playerTwo.getTotalWinnings() + (playerTwo.getAnteBet())*2);
-                System.out.println("player 2 won");
+                playerTwo.updateWinnings(playerTwo.getTotalWinnings() + (playerTwo.getAnteBet()));
+                appendGameInfo("- Player 2 beats dealer");
             }
 
             if (p1Res == 0) {
                 // tie
-                System.out.println("p1 tie");
+                appendGameInfo("- Player 1 ties with dealer");
             }
 
             if (p2Res == 0) {
                 // tie
-                System.out.println("p2 tie");
+                appendGameInfo("- Player 2 ties with dealer");
             }
 
             p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
@@ -408,7 +438,7 @@ public class GamePlayController implements Initializable {
 
         }
         else {
-            System.out.println("dealer did not qualify");
+            appendGameInfo("- Dealer does not have at least Queen high; ante wager is pushed");
             playerOne.setPlayBet(0);
             playerTwo.setPlayBet(0);
         }
@@ -502,7 +532,10 @@ public class GamePlayController implements Initializable {
         p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
         p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
 
+    }
 
+    public void appendGameInfo(String message) {
+        gameInfoArea.appendText(message + "\n");
     }
 
 
