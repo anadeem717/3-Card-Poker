@@ -5,36 +5,39 @@
 /* Style for the menu bar */
 .menu-bar {
     -fx-background-color: #717070;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff; /* Set text color to white */
 }
 
 .menu-item {
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff; /* Set menu item text color to white */
 }
 
 .menu-item:hover {
     -fx-background-color: #454545;
+    -fx-text-fill: #ffffff; /* Ensure text stays white on hover */
 }
 
 /* Text styling */
 .text {
-    -fx-fill: #000000;
+    -fx-fill: #ffffff; /* Set default text color to white */
 }
 
 .text-bold {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
+    -fx-fill: #ffffff; /* Ensure bold text is white */
 }
 
 .text-small {
     -fx-font-size: 10px;
     -fx-font-weight: bold;
+    -fx-fill: #ffffff; /* Ensure small text is white */
 }
 
 /* TextArea Styling */
 .text-area {
     -fx-background-color: #933434;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff; /* Set text in text area to white */
     -fx-border-color: #a01616;
 }
 
@@ -48,7 +51,7 @@
 /* Button Styling */
 .button {
     -fx-background-color: #933434;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff; /* Set button text color to white */
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-border-radius: 5px;
@@ -78,7 +81,7 @@
 /* Style for the labels and bet sections */
 .hbox-bet-section {
     -fx-background-color: #933434;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff; /* Set text color to white */
 }
 
 /* Styling for the Player's Bet VBox sections */
@@ -93,6 +96,33 @@
     -fx-background-color: #933434;
     -fx-border-color: #933434;
     -fx-border-width: 2px;
+}
+
+.text-cards {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: white; /* White text color */
+}
+
+/* Style for the Dealer's Cards */
+.dealer-cards-text {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-fill: white; /* White text color */
+}
+
+/* Style for Player 1's Cards */
+.player1-cards-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: white; /* White text color */
+}
+
+/* Style for Player 2's Cards */
+.player2-cards-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: white; /* White text color */
 }
 
 /* Additional Adjustments for Layout */
