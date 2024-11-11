@@ -2,16 +2,21 @@
     -fx-background-color: #204312;
 }
 
-/* Style the Text */
-#WelcomeRoot Text {
-    -fx-fill: #000000;
-    -fx-font-size: 50px;
+/* Style the Title Label */
+#titleLabel {
+    -fx-background-color: #933434; /* Background color of the rectangle */
+    -fx-text-fill: #000000; /* Text color */
+    -fx-font-size: 40px;
     -fx-font-weight: bold;
-    -fx-text-alignment: center;
+    -fx-font-family: "Verdana";
+    -fx-alignment: center; /* Center text alignment */
+    -fx-padding: 10px 20px; /* Padding around the text inside the rectangle */
+    -fx-background-radius: 15px; /* Rounded corners */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 2); /* Shadow effect */
 }
 
-/* Style the Play Game button */
-#WelcomeRoot Button {
+/* Style the Play Game and Exit buttons */
+#playGameButton, #exitButton {
     -fx-background-color: #933434;
     -fx-text-fill: #000000;
     -fx-font-size: 18px;
@@ -22,27 +27,10 @@
     -fx-min-height: 50px;
     -fx-max-width: 200px;
     -fx-max-height: 70px;
+    -fx-font-family: "Verdana";
 }
 
-/* Add hover effect for the Play Game button */
+/* Hover effect for buttons */
 #WelcomeRoot Button:hover {
     -fx-background-color: #602424;
-}
-
-#playGameButton {
-    -fx-background-color: #933434;
-    -fx-text-fill: #000000;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-}
-
-#exitButton {
-    -fx-background-color: #933434;
-    -fx-text-fill: #000000;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
 }
