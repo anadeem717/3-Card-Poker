@@ -43,29 +43,77 @@ public class ThreeCardLogic {
         int dealerVal = evalHand(dealer);
         int playerVal = evalHand(player);
 
+        // If both hands are of the same type
         if (dealerVal == playerVal) {
-            // ties with: straights / (flush), pair
-            if (dealerVal == 3 || dealerVal == 1 || dealerVal == 5) {
+            if (dealerVal == 4 || dealerVal == 0) { // Flush or High Card case
+                return compareHighCards(dealer, player); // Compare based on high cards
+            } else if (dealerVal == 3 || dealerVal == 1) { // Straight or Straight Flush case
                 int dealerHighCard = getHighCardInStraight(dealer);
                 int playerHighCard = getHighCardInStraight(player);
-                if (dealerHighCard > playerHighCard) return 1; // dealer wins
-                else if (dealerHighCard < playerHighCard) return 2; // player wins
-                else return 0;
+                if (dealerHighCard > playerHighCard) return 1; // Dealer wins
+                else if (dealerHighCard < playerHighCard) return 2; // Player wins
+                else return 0; // Tie
+            } else if (dealerVal == 2) { // Three of a Kind case
+                int dealerValSingle = dealer.get(0).value; // All cards have the same value
+                int playerValSingle = player.get(0).value;
+                if (dealerValSingle > playerValSingle) return 1; // Dealer wins
+                else if (dealerValSingle < playerValSingle) return 2; // Player wins
+                else return 0; // Tie
+            } else if (dealerVal == 5) { // Pair case
+                return comparePairs(dealer, player); // Compare pairs and kickers
             }
-            else if (dealerVal == 2) {
-                int dVal = dealer.get(0).value;
-                int pVal = player.get(0).value;
-                if (dVal > pVal) return 1; // dealer wins
-                else if (dVal < pVal) return 2; // player wins
-            }
         }
-        if (dealerVal > playerVal) {
-            return 1; // dealer wins
-        }
-        else {
-            return 2; // player wins
-        }
+
+        // If hands have different types, higher value wins
+        if (dealerVal > playerVal) return 1; // Dealer wins
+        else return 2; // Player wins
     }
+
+    private static int compareHighCards(ArrayList<Card> dealer, ArrayList<Card> player) {
+        ArrayList<Integer> dealerValues = new ArrayList<>();
+        ArrayList<Integer> playerValues = new ArrayList<>();
+
+        for (Card card : dealer) dealerValues.add(card.value);
+        for (Card card : player) playerValues.add(card.value);
+
+        Collections.sort(dealerValues, Collections.reverseOrder()); // Sort descending
+        Collections.sort(playerValues, Collections.reverseOrder());
+
+        for (int i = 0; i < dealerValues.size(); i++) {
+            if (dealerValues.get(i) > playerValues.get(i)) return 1; // Dealer wins
+            else if (dealerValues.get(i) < playerValues.get(i)) return 2; // Player wins
+        }
+
+        return 0; // Tie
+    }
+
+    private static int comparePairs(ArrayList<Card> dealer, ArrayList<Card> player) {
+        int dealerPairValue = findPairValue(dealer);
+        int playerPairValue = findPairValue(player);
+
+        if (dealerPairValue > playerPairValue) return 1; // Dealer's pair is higher
+        if (dealerPairValue < playerPairValue) return 2; // Player's pair is higher
+
+        // If pairs are the same, compare kickers
+        return compareHighCards(dealer, player);
+    }
+
+    private static int findPairValue(ArrayList<Card> hand) {
+        ArrayList<Integer> values = new ArrayList<>();
+        for (Card card : hand) values.add(card.value);
+
+        for (int i = 0; i < values.size(); i++) {
+            for (int j = i + 1; j < values.size(); j++) {
+                if (values.get(i).equals(values.get(j))) {
+                    return values.get(i); // Return the pair value
+                }
+            }
+        }
+        return -1; // Should not happen for valid pairs
+    }
+
+
+
 
     // Method that checks to see if the hand is a 'Straight'
     public static boolean isStraight(ArrayList<Card> hand) {
@@ -159,6 +207,7 @@ public class ThreeCardLogic {
         // Find the highest card in the hand
         int highestCardValue = 0;
 
+        // case better than a high card
         if (evalHand(hand) > 0) return true;
 
         for (Card card : hand) {
