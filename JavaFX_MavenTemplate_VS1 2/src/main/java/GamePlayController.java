@@ -394,6 +394,7 @@ public class GamePlayController implements Initializable {
     }
 
 
+    // checks who won
     private void evaluateWin() throws IOException {
 
         evaluatePairPlus();

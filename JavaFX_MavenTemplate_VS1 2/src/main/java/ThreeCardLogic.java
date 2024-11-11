@@ -44,7 +44,7 @@ public class ThreeCardLogic {
         int playerVal = evalHand(player);
 
         if (dealerVal == playerVal) {
-            // both straights / (flush), pair
+            // ties with: straights / (flush), pair
             if (dealerVal == 3 || dealerVal == 1 || dealerVal == 5) {
                 int dealerHighCard = getHighCardInStraight(dealer);
                 int playerHighCard = getHighCardInStraight(player);
