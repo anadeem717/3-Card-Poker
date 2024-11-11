@@ -1,10 +1,10 @@
 .root {
-    -fx-background-color: #204312; /* Dark Blue */
+    -fx-background-color: #204312;
 }
 
 /* Style for the menu bar */
 .menu-bar {
-    -fx-background-color: #717070; /* Dark Greyish Blue */
+    -fx-background-color: #717070;
     -fx-text-fill: #000000;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .menu-item:hover {
-    -fx-background-color: #454545; /* Teal */
+    -fx-background-color: #454545;
 }
 
 /* Text styling */
@@ -33,21 +33,21 @@
 
 /* TextArea Styling */
 .text-area {
-    -fx-background-color: #933434; /* Dark Grey */
+    -fx-background-color: #933434;
     -fx-text-fill: #000000;
-    -fx-border-color: #a01616; /* Light Teal */
+    -fx-border-color: #a01616;
 }
 
 /* VBox container for Player's and Dealer's Cards */
 .vbox {
-    -fx-background-color: #933434; /* Light Teal */
-    -fx-border-color: #a01616; /* Darker Teal */
+    -fx-background-color: #933434;
+    -fx-border-color: #a01616;
     -fx-border-width: 2px;
 }
 
 /* Button Styling */
 .button {
-    -fx-background-color: #933434; /* Light Teal */
+    -fx-background-color: #933434;
     -fx-text-fill: #000000;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
@@ -60,7 +60,7 @@
 
 /* Hover effect for buttons */
 .button:hover {
-    -fx-background-color: #602424; /* Light Teal Hover */
+    -fx-background-color: #602424;
 }
 
 /* ImageView for displaying cards */
@@ -71,27 +71,27 @@
 
 /* VBox for game info section */
 .vbox-game-info {
-    -fx-background-color: #933434; /* Dark Grey */
-    -fx-border-color: #933434; /* Teal Border */
+    -fx-background-color: #933434;
+    -fx-border-color: #933434;
 }
 
 /* Style for the labels and bet sections */
 .hbox-bet-section {
-    -fx-background-color: #933434; /* Dark Grey */
+    -fx-background-color: #933434;
     -fx-text-fill: #000000;
 }
 
 /* Styling for the Player's Bet VBox sections */
 .vbox-bets {
-    -fx-background-color: #933434; /* Light Teal */
+    -fx-background-color: #933434;
     -fx-border-color: #933434;
     -fx-border-width: 2px;
 }
 
 /* Styling for the GameInfo section */
 .vbox-game-info {
-    -fx-background-color: #933434; /* Dark Blue */
-    -fx-border-color: #933434; /* Teal */
+    -fx-background-color: #933434;
+    -fx-border-color: #933434;
     -fx-border-width: 2px;
 }
 
