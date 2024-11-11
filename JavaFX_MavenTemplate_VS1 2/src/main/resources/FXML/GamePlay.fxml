@@ -87,7 +87,8 @@
         <Button fx:id="p1Fold" disable="true" layoutX="37.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleP1Fold" prefHeight="47.0" prefWidth="100.0" text="FOLD" visible="false" />
         <Button fx:id="p2Play" disable="true" layoutX="850.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleP2Play" prefHeight="47.0" prefWidth="100.0" text="PLAY" visible="false" />
         <Button fx:id="p2Fold" disable="true" layoutX="852.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleP2Fold" prefHeight="47.0" prefWidth="100.0" text="FOLD" visible="false" />
-      <Button fx:id="revealButton" onAction="#handleRevealDealer" disable="true" layoutX="417.0" layoutY="243.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="167.0" text="REVEAL DEALER CARDS" visible="false" />
+      <Button fx:id="revealButton" disable="true" layoutX="417.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleRevealDealer" prefHeight="47.0" prefWidth="167.0" text="REVEAL DEALER CARDS" visible="false" />
+      <Button fx:id="continueButton" focusTraversable="false" layoutX="445.0" layoutY="313.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" text="Continue" visible="false" />
 
     </Pane>
 

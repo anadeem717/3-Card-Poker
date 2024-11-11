@@ -82,6 +82,9 @@ public class GamePlayController implements Initializable {
     private boolean p2Selected = false;
 
     @FXML Button revealButton;
+    @FXML Button continueButton;
+
+    private boolean dealerHandQualifies = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -201,6 +204,7 @@ public class GamePlayController implements Initializable {
         // Enable the Deal Cards button only if both Ante bets are placed
         if (p1AnteBetPlaced && p2AnteBetPlaced) {
             dealCardsButton.setDisable(false);
+            dealCardsButton.setVisible(true);
         }
     }
 
@@ -334,7 +338,7 @@ public class GamePlayController implements Initializable {
         p2Fold.setDisable(true);
 
         p2Selected = true;
-        p1Folded = true;
+        p2Folded = true;
 
         checkSelections();
     }
@@ -365,36 +369,73 @@ public class GamePlayController implements Initializable {
     private void evaluateWin() throws IOException {
         ArrayList<Card> dealerHand = theDealer.getDealerHand();
         if (ThreeCardLogic.handQualifies(dealerHand)) {
+            dealerHandQualifies = true;
             int p1Res = ThreeCardLogic.compareHands(dealerHand, playerOne.getHand());
+            int p2Res = ThreeCardLogic.compareHands(dealerHand, playerTwo.getHand());
 
             if (p1Res == 1) { // dealer wins
                 playerOne.updateWinnings(playerOne.getTotalWinnings() - (playerOne.getAnteBet())*2);
-                System.out.println("dealer won");
+                System.out.println("dealer won against p1");
             }
 
-            else if (p1Res == 2) { // player wins
+            if (p2Res == 1) {
+                playerTwo.updateWinnings(playerTwo.getTotalWinnings() - (playerTwo.getAnteBet())*2);
+                System.out.println("dealer won against p2");
+            }
+
+            if (p1Res == 2) { // player wins
                 playerOne.updateWinnings(playerOne.getTotalWinnings() + (playerOne.getAnteBet())*2);
                 System.out.println("player 1 won");
             }
-            else { } // tie
+
+            if (p2Res == 2) {
+                playerTwo.updateWinnings(playerTwo.getTotalWinnings() + (playerTwo.getAnteBet())*2);
+                System.out.println("player 2 won");
+            }
+
+            if (p1Res == 0) {
+                // tie
+                System.out.println("p1 tie");
+            }
+
+            if (p2Res == 0) {
+                // tie
+                System.out.println("p2 tie");
+            }
 
             p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
+            p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
+
         }
         else {
             System.out.println("dealer did not qualify");
             playerOne.setPlayBet(0);
             playerTwo.setPlayBet(0);
-            nextHand();
         }
+
+        continueButton.setDisable(false);
+        continueButton.setVisible(true);
+        continueButton.setOnAction(event -> {
+            try {
+                continueButton.setDisable(true);
+                continueButton.setVisible(false);
+                nextHand();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void nextHand() throws IOException {
         // Check if players folded or not, if they did not fold, push their ante bet to the next hand
         int p1AnteBet = 0;
-        if (!p1Folded) { p1AnteBet = playerOne.getAnteBet(); }
+        if (!p1Folded && !dealerHandQualifies) { p1AnteBet = playerOne.getAnteBet(); }
 
         int p2AnteBet = 0;
-        if (!p2Folded) { p2AnteBet = playerTwo.getAnteBet(); }
+        if (!p2Folded && !dealerHandQualifies) { p2AnteBet = playerTwo.getAnteBet(); }
+
+        playerOne.setPlayBet(0);
+        playerTwo.setPlayBet(0);
 
         // Initial card setup
         theDealer.dealDealerHand();
@@ -417,16 +458,36 @@ public class GamePlayController implements Initializable {
 
         // Disable Deal Cards button and betting buttons initially
         dealCardsButton.setDisable(true);
-        if (!p1Folded) {
-            p1AnteBetButton.setDisable(false);
-            p1AnteBetPlaced = true;
+
+        if (!dealerHandQualifies) {
+            if (!p1Folded && !p2Folded) {
+                dealCardsButton.setDisable(false);
+                dealCardsButton.setVisible(true);
+            } else if (!p1Folded && p2Folded) {
+                p1AnteBetButton.setDisable(true);
+                p1AnteBetPlaced = true;
+                p2AnteBetButton.setDisable(false);
+                p2AnteBetPlaced = false;
+            } else if (!p2Folded && p1Folded) {
+                p2AnteBetButton.setDisable(true);
+                p2AnteBetPlaced = true;
+                p1AnteBetButton.setDisable(false);
+                p1AnteBetPlaced = false;
+            } else {
+                p1AnteBetButton.setDisable(false);
+                p1AnteBetPlaced = false;
+                p2AnteBetButton.setDisable(false);
+                p2AnteBetPlaced = false;
+            }
         }
-        if (!p2Folded) {
+        else {
+            p1AnteBetButton.setDisable(false);
+            p1AnteBetPlaced = false;
             p2AnteBetButton.setDisable(false);
-            p2AnteBetPlaced = true;
+            p2AnteBetPlaced = false;
         }
 
-        checkAnteBets();
+        dealerHandQualifies = false;
 
         p1PPButton.setDisable(false);
         p2PPButton.setDisable(false);
@@ -436,6 +497,8 @@ public class GamePlayController implements Initializable {
 
         P1anteBetText.setText("Ante Bet: $" + Integer.toString(p1AnteBet));
         P2anteBetText.setText("Ante Bet: $" + Integer.toString(p2AnteBet));
+        P1PlayBetText.setText("Play Wager: $0");
+        P2PlayBetText.setText("Play Wager: $0");
         p1Winnings.setText("Total Winnings: $" + Integer.toString(playerOne.getTotalWinnings()));
         p2Winnings.setText("Total Winnings: $" + Integer.toString(playerTwo.getTotalWinnings()));
 
