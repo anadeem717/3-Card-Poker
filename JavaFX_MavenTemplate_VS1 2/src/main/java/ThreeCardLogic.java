@@ -43,14 +43,14 @@ public class ThreeCardLogic {
         int dealerVal = evalHand(dealer);
         int playerVal = evalHand(player);
 
+        if (dealerVal == 3 && playerVal == 3) {
+            int dealerHighCard = getHighCardInStraight(dealer);
+            int playerHighCard = getHighCardInStraight(player);
+            if (dealerHighCard > playerHighCard) return 1; // dealer wins
+            else if (dealerHighCard < playerHighCard) return 2; // player wins
+        }
+
         if (dealerVal == playerVal) {
-            // If both hands are a straight, compare the highest card
-            if (dealerVal == 3) {
-                int dealerHighCard = getHighCardInStraight(dealer);
-                int playerHighCard = getHighCardInStraight(player);
-                if (dealerHighCard > playerHighCard) return 1; // dealer wins
-                else if (dealerHighCard < playerHighCard) return 2; // player wins
-            }
             return 0; // tie
         } else if (dealerVal > playerVal) {
             return 1; // dealer wins
