@@ -1,0 +1,22 @@
+#GamePlayRoot {
+    -fx-background-color: #3e3e40;
+}
+
+/* Style for buttons, labels, etc. */
+.button {
+    -fx-font-size: 14px;
+    -fx-font-family: "Comic Sans MS";
+    -fx-background-color: #933434;
+    -fx-text-fill: #cd6363;
+}
+
+.label {
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 16px;
+    -fx-text-fill: #933434;
+}
+
+/* Customize ImageView appearance */
+.image-view {
+    -fx-effect: dropshadow(gaussian, black, 10, 0.5, 0, 0);
+}
