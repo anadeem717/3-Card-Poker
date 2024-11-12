@@ -29,7 +29,7 @@ A JavaFX-based GUI application simulating a 3-Card Poker game. This project is d
 ## Technologies
 
 - **Programming Language**: Java (JavaFX)
-- **Development Environment**: IntelliJ IDEA / Eclipse
+- **Development Environment**: IntelliJ IDEA
 - **Frameworks and Libraries**:
   - JavaFX for GUI
   - JUnit for unit testing
