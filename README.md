@@ -2,18 +2,6 @@
 
 A JavaFX-based GUI application simulating a 3-Card Poker game. This project is developed as part of **CS 342: Software Design** coursework. It demonstrates skills in object-oriented programming, GUI design, and game logic implementation.
 
-## Table of Contents
-
-- [Features](#features)
-- [Technologies](#technologies)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Gameplay](#gameplay)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
 ## Features
 
 - **Interactive Gameplay**: Play 3-Card Poker with a visually appealing and user-friendly interface.
@@ -31,8 +19,7 @@ A JavaFX-based GUI application simulating a 3-Card Poker game. This project is d
 - **Programming Language**: Java (JavaFX), CSS  
 - **Development Environment**: IntelliJ IDEA  
 - **Frameworks and Libraries**:  
-  - JavaFX for GUI (FXML for interface design)  
-  - CSS for styling the GUI  
+  - JavaFX for GUI (FXML for interface design)   
   - JUnit for unit testing  
 - **Version Control**: Git and GitHub  
 
